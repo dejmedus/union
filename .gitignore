@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# non-distribution
+/assets/images/DrawKit
+
 # next.js
 /.next/
 /out/
