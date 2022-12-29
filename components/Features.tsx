@@ -2,34 +2,34 @@ import Button from '@/components/Button'
 
 const Features = () => {
   return (
-    <section className="bg-gray-900 text-white">
+    <section className="bg-zinc-800 text-white mx-2 sm:mx-4 md:mx-6 rounded-2xl">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">
-          <h2 className="text-3xl font-bold sm:text-4xl">
-            Find your People
+          <h2 className="text-2xl font-bold sm:text-3xl">
+            Know Thyself
           </h2>
 
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-zinc-300">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit.
             Consequuntur aliquam doloribus nesciunt eos fugiat. Vitae aperiam
             fugit consequuntur saepe laborum.
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           <FeatureCard
-            header="Wow!!!"
-            body="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo possimus adipisci distinctio alias voluptatum blanditiis laudantium."
+            header="Wow"
+            body="Lorem ipsum dolor sit amet consectetur adipisicing elit."
           />
           <FeatureCard
-            header="Wow!!!"
-            body="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo possimus adipisci distinctio alias voluptatum blanditiis laudantium."
+            header="Wow"
+            body="Lorem ipsum dolor sit amet consectetur adipisicing elit."
           />
           <FeatureCard
-            header="Wow!!!"
-            body="Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex ut quo possimus adipisci distinctio alias voluptatum blanditiis laudantium."
+            header="Wow"
+            body="Lorem ipsum dolor sit amet consectetur adipisicing elit. "
           />
-        </div>
+        </div> */}
 
         <div className="mt-12 text-center">
           <Button content='Get Started' />
@@ -49,31 +49,29 @@ interface FeatureCardProps {
 function FeatureCard({header, body}: FeatureCardProps)
 {
     return (
-      <div
-        className="block rounded-xl border border-gray-800 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10 text-pink-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M12 14l9-5-9-5-9 5 9 5z" />
-          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-          />
-        </svg>
+      <div className="group block h-56">
+        <div className="relative flex h-full items-end rounded-3xl border-4 bg-zinc-50 border-violet-400 text-black p-8 transition group-hover:-translate-x-2 group-hover:-translate-y-2 group-hover:shadow-[8px_8px_0_0_#a78bfa]">
+          <div className="lg:group-hover:absolute lg:group-hover:opacity-0">
+            <span
+              className="text-3xl sm:text-4xl"
+              role="img"
+              aria-hidden="true"
+            >
+              📆
+            </span>
+            <p className="mt-4 text-xl font-bold sm:text-2xl">
+              {header}
+            </p>
+          </div>
 
-        <h2 className="mt-4 text-xl font-bold text-white">{header}</h2>
+          <div className="absolute opacity-0 lg:group-hover:relative lg:group-hover:opacity-100">
+            <h3 className="text-2xl font-bold">{header}</h3>
 
-        <p className="mt-1 text-sm text-gray-300">
-          {body}
-        </p>
+            <p className="mt-4 text-lg font-medium leading-relaxed text-black">
+              {body}
+            </p>
+          </div>
+        </div>
       </div>
     );
 }

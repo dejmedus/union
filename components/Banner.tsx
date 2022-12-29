@@ -3,14 +3,16 @@ const Banner = () => {
   return (
     <div className="relative bg-neutral-800 px-4 py-3 pr-14 text-white">
       <p className="text-left text-sm font-medium sm:text-center">
-        This is a demo build. Want an Architecture Overview?
-        <a className="underline" href="/docusaurus-link">
-          {" "}
-          View Docs &rarr;{" "}
+        This is a demo build.{" "}
+        <a
+          className="underline hover:translate-x-12"
+          href="/docusaurus-link"
+        >
+          View the Design Guide &rarr;{" "}
         </a>
       </p>
 
-      <button
+      {/* <button
         aria-label="Close"
         className="absolute top-1/2 right-4 -translate-y-1/2 rounded-lg bg-neutral-700/60 p-1 transition hover:bg-neutral-700/90"
       >
@@ -26,7 +28,7 @@ const Banner = () => {
             clipRule="evenodd"
           />
         </svg>
-      </button>
+      </button> */}
     </div>
   );
 }

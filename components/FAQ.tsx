@@ -5,11 +5,11 @@ interface FAQProps {
 const FAQ = ({question, answer}: FAQProps) => {
   return (
     <details
-      className="group rounded-lg bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+      className="group rounded-lg bg-zinc-50 p-6 [&_summary::-webkit-details-marker]:hidden"
       open
     >
       <summary className="flex items-center justify-between cursor-pointer">
-        <h2 className="font-medium text-gray-900">
+        <h2 className="font-medium text-zinc-900">
           {question}
         </h2>
 
@@ -46,7 +46,7 @@ const FAQ = ({question, answer}: FAQProps) => {
         </span>
       </summary>
 
-      <p className="mt-4 leading-relaxed text-gray-700">
+      <p className="mt-4 leading-relaxed text-zinc-700">
        {answer}
       </p>
     </details>

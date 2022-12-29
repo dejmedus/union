@@ -9,7 +9,7 @@ export default function Navlink({ name, path }: NavlinkProps) {
   return (
     <li>
       <Link
-        className="text-gray-500 transition hover:text-gray-500/75"
+        className="text-zinc-500 transition hover:text-zinc-600"
         href={path}
       >
         {name}

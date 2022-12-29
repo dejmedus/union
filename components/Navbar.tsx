@@ -4,7 +4,7 @@ import Button from './Button';
 
 const Navbar = () => {
   return (
-    <header aria-label="Site Header" className="bg-white">
+    <header id="navbar" aria-label="Site Header" className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -20,10 +20,10 @@ const Navbar = () => {
             </nav>
 
             <div className="flex items-center gap-4">
-              <Button content='Login'/>
+              <Button content="Login" />
 
               <div className="block md:hidden">
-                <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                <button className="p-2 border border-violet-400 bg-zinc-50 text-violet-400 transition hover:bg-violet-200">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"

@@ -1,43 +1,61 @@
 import Image from 'next/image'
-import Button from './Button';
 import people from '../assets/images/DrawKit/people.png'
-import { Chivo_Mono } from "@next/font/google";
-
-const headerFont = Chivo_Mono({
-  variable: "--inter-font",
-});
-
+// md:grid md:grid-cols-2 md:items-center
 const Hero = () => {
   return (
-    <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center">
-      <div className="p-8 md:p-12 lg:px-16 lg:py-24">
+    <section className="overflow-hidden bg-white flex gap-2 py-4">
+      <div className="p-8 md:p-12 lg:px-16 lg:py-24 flex-1">
         <div className="mx-auto max-w-xl text-center sm:text-left">
-          <h2
-            className={`text-2xl font-bold text-gray-900 md:text-3xl ${headerFont.variable}`}
-          >
+          <h2 className="text-2xl font-bold text-zinc-900 md:text-3xl">
             Find Someone with Union
           </h2>
 
-          <p className="hidden text-gray-500 md:mt-4 md:block">
+          <p className="text-zinc-500 sm:mt-2 md:mt-4">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
             tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim
             et fermentum, augue. Aliquet amet volutpat quisque ut interdum
             tincidunt duis.
           </p>
-          <Button content="Signup" />
+          <SignupInput />
         </div>
       </div>
-
-      {/* <Image
-        className="h-full w-full object-cover sm:h-[calc(100%_-_2rem)] sm:self-end sm:rounded-tl-[30px] md:h-[calc(100%_-_4rem)] md:rounded-tl-[60px]"
-        src="https://images.unsplash.com/photo-1484959014842-cd1d967a39cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-        alt="violin"
-        height={280}
+      <Image
+        className="hidden md:block py-4"
+        src={people}
+        alt="four people together"
+        height={600}
         width={400}
-      /> */}
-      <Image src={people} alt="four people together" height={600} width={400} />
+      />
     </section>
   );
 }
 
 export default Hero
+
+function SignupInput()
+{
+  return (
+    <form className="mt-6">
+      <div className="relative max-w-lg">
+        <label className="sr-only" htmlFor="email">
+          {" "}
+          Email{" "}
+        </label>
+
+        <input
+          className="w-full rounded-full border-zinc-200 bg-zinc-100 p-4 pr-32 text-sm font-medium"
+          id="email"
+          type="email"
+          placeholder="jackie@doe.com"
+        />
+
+        <button
+          className="absolute top-1/2 right-1 -translate-y-1/2 rounded-full bg-blue-400 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-500"
+          type="button"
+        >
+          Signup
+        </button>
+      </div>
+    </form>
+  );
+}
