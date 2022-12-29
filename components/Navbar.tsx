@@ -1,6 +1,6 @@
-import Navlink from '@/components/Navlink'
-import Logo from './Logo'
-import Button from './Button';
+import Navlink from "@/components/Navlink";
+import Logo from "./Logo";
+import Button from "./LinkButton";
 
 const Navbar = () => {
   return (
@@ -14,13 +14,14 @@ const Navbar = () => {
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Site Nav" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
-                <Navlink name="About" path="path" />
-                <Navlink name="Pricing" path="/pricing" />
+                <Navlink name="About" path="#about" />
+                <Navlink name="Pricing" path="#pricing" />
+                <Navlink name="FAQs" path="#faqs" />
               </ul>
             </nav>
 
             <div className="flex items-center gap-4">
-              <Button content="Login" />
+              <Button content="Login" path="/login" />
 
               <div className="block md:hidden">
                 <button className="p-2 border border-violet-400 bg-zinc-50 text-violet-400 transition hover:bg-violet-200">
@@ -46,6 +47,6 @@ const Navbar = () => {
       </div>
     </header>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

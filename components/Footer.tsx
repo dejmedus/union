@@ -18,9 +18,9 @@ const Footer = () => {
               fill="currentColor"
             >
               <path
-                fill-rule="evenodd"
+                fillRule="evenodd"
                 d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
-                clip-rule="evenodd"
+                clipRule="evenodd"
               />
             </svg>
           </a>
@@ -39,9 +39,10 @@ const Footer = () => {
           </div>
 
           <nav aria-label="Footer Nav" className="mt-12 lg:mt-0">
-            <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:justify-end lg:gap-12">
+            <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:justify-end text-sm">
               <Navlink name="design guide" path="https://docusaurus.io" />
-              <Navlink name="source code" path="https://docusaurus.io" />
+              <Navlink name="source code" path="https://github-repo" />
+              <Navlink name="other work" path="https://portfolio" />
             </ul>
           </nav>
         </div>
