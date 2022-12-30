@@ -35,9 +35,9 @@ interface FAQProps {
 }
 const FAQ = ({ question, answer }: FAQProps) => {
   return (
-    <details className="group rounded-lg bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden">
+    <details className="group rounded-lg dark:bg-zinc-800 bg-zinc-50 p-6 [&_summary::-webkit-details-marker]:hidden">
       <summary className="flex items-center justify-between cursor-pointer">
-        <h2 className="font-medium text-gray-900">{question}</h2>
+        <h2 className="font-medium">{question}</h2>
 
         <span className="relative ml-1.5 h-5 w-5 flex-shrink-0">
           <svg
@@ -72,7 +72,9 @@ const FAQ = ({ question, answer }: FAQProps) => {
         </span>
       </summary>
 
-      <p className="mt-4 leading-relaxed text-gray-700">{answer}</p>
+      <p className="mt-4 leading-relaxed dark:text-zinc-300 text-zinc-700">
+        {answer}
+      </p>
     </details>
   );
 };

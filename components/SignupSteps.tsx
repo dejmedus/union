@@ -5,19 +5,21 @@ const SignupSteps = ({ currentStep }: SignupStepProps) => {
   const mockSteps = ["Account", "Preferences", "Photos", "Confirmation"];
 
   return (
-    <ol className="flex my-2 md:my-4 items-center gap-2 text-xs font-medium text-gray-500 sm:gap-4">
-      {mockSteps.map((step, index) => {
-        {
-          return currentStep > index ? (
-            <Complete order={index} />
-          ) : currentStep == index ? (
-            <Current order={index} name={step} />
-          ) : (
-            <Next order={index} name={step} />
-          );
-        }
-      })}
-    </ol>
+    <div className="grid justify-items-center my-2 md:my-4">
+      <ol className="flex gap-2 sm:gap-4 text-xs font-medium text-zinc-500">
+        {mockSteps.map((step, index) => {
+          {
+            return currentStep > index ? (
+              <Complete order={index} name={step} />
+            ) : currentStep == index ? (
+              <Current order={index} name={step} />
+            ) : (
+              <Next order={index} name={step} />
+            );
+          }
+        })}
+      </ol>
+    </div>
   );
 };
 
@@ -25,12 +27,12 @@ export default SignupSteps;
 
 interface StepProps {
   order: number;
-  name?: string;
+  name: string;
 }
-function Complete({ order }: StepProps) {
+function Complete({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex">
-      <button className="rounded bg-green-50 hover:bg-green-100 p-1.5 text-green-200">
+    <li key={order} className="flex items-center w-28 text-green-400">
+      <span className="rounded bg-green-50 p-1.5 text-green-200 dark:bg-green-300 dark:text-green-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-3 w-3"
@@ -43,17 +45,19 @@ function Complete({ order }: StepProps) {
             clipRule="evenodd"
           />
         </svg>
-      </button>
+      </span>
+
+      <span className="ml-2"> {name} </span>
     </li>
   );
 }
 
 function Current({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex items-center justify-center text-blue-400">
-      <button className="h-6 w-6 rounded hover:bg-blue-100 bg-blue-50 text-center text-[10px] font-bold leading-6">
+    <li key={order} className="flex items-center text-blue-400 w-28">
+      <span className="h-6 w-6 rounded bg-blue-50 dark:bg-blue-400 dark:text-blue-50 text-center text-[10px] font-bold leading-6">
         {order}
-      </button>
+      </span>
 
       <span className="ml-2"> {name} </span>
     </li>
@@ -62,12 +66,12 @@ function Current({ order, name }: StepProps) {
 
 function Next({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex items-center justify-end">
-      <button className="h-6 w-6 rounded bg-gray-50 hover:bg-gray-100 text-center text-[10px] font-bold leading-6 text-gray-600">
+    <li key={order} className="flex items-center w-28">
+      <span className="h-6 w-6 rounded bg-zinc-50 text-center text-[10px] font-bold leading-6 text-zinc-600">
         {order}
-      </button>
+      </span>
 
-      <span className="ml-2"> {name} </span>
+      <span className="ml-2 dark:text-zinc-300"> {name} </span>
     </li>
   );
 }

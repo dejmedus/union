@@ -4,7 +4,7 @@ const Features = () => {
   return (
     <section
       id="about"
-      className="bg-zinc-800 text-white mx-2 sm:mx-4 md:mx-6 rounded-2xl"
+      className="bg-zinc-800 mx-2 sm:mx-4 md:mx-6 rounded-2xl"
     >
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-lg text-center">

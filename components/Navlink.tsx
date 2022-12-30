@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 interface NavlinkProps {
   name: string;
@@ -9,7 +9,7 @@ export default function Navlink({ name, path }: NavlinkProps) {
   return (
     <li>
       <Link
-        className="text-zinc-500 transition hover:text-zinc-600"
+        className="dark:text-zinc-400 hover:dark:text-zinc-500 text-zinc-500 transition hover:text-zinc-600"
         href={path}
       >
         {name}

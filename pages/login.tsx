@@ -37,7 +37,7 @@ function Login() {
 
         <form
           action="post"
-          className="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl"
+          className="mt-6 mb-0 space-y-4 rounded-lg p-8 dark:shadow-zinc-800 shadow-2xl"
         >
           <p className="text-lg font-medium">Sign in to your account</p>
           <Input

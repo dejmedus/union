@@ -2,12 +2,12 @@ import Navlink from "@/components/Navlink";
 
 const Footer = () => {
   return (
-    <footer aria-label="Site Footer" className="bg-zinc-100">
+    <footer aria-label="Site Footer" className="dark:bg-zinc-800 bg-zinc-100">
       <div className="relative mx-auto max-w-screen-xl px-8 py-8 sm:px-6 lg:px-8 lg:pt-24">
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:top-8 lg:right-8">
           <a
             className="inline-block rounded-full bg-blue-400 p-2 text-white shadow transition hover:bg-blue-500 sm:p-3 lg:p-4"
-            href="#header"
+            href="#navbar"
           >
             <span className="sr-only">Back to top</span>
 
@@ -32,7 +32,7 @@ const Footer = () => {
               <h3>Union</h3>
             </div>
 
-            <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-zinc-500 lg:text-left">
+            <p className="mx-auto mt-6 max-w-md text-center leading-relaxed dark:text-zinc-400 text-zinc-500 lg:text-left">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
               consequuntur amet culpa cum itaque neque.
             </p>

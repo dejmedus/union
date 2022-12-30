@@ -30,7 +30,7 @@ interface PricingCardProps {
 }
 function PricingCard({ title, features, price }: PricingCardProps) {
   return (
-    <div className="px-4 py-8 flex md:flex-1 flex-col bg-zinc-50 border-2 border-pink-200 gap-2 md:w-3/12">
+    <div className="px-4 py-8 flex md:flex-1 flex-col dark:bg-zinc-800 bg-zinc-50 dark:border-zinc-800 border-2 border-pink-200 gap-2 md:w-3/12">
       <div className="flex-1">
         <h3 className="ml-2 font-bold text-xl md:text-lg">{title}</h3>
         <ul className="ml-4 p-2">

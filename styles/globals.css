@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 :root {
+  --lg-font: #18181b;
+  --sm-font: #71717a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --lg-font: #f4f4f5;
+    --sm-font: #d4d4d8;
   }
 }
 
@@ -19,6 +23,7 @@ h2,
 h3,
 button {
   font-family: var(--unbounded-font);
+  color: var(--lg-font);
 }
 
 p button,
@@ -27,6 +32,7 @@ input,
 a,
 p {
   font-family: var(--chivo-font);
+  color: var(--sm-font);
 }
 
 input:active,

@@ -10,6 +10,12 @@ interface InputProps {
   value: string | false;
 }
 
+// darkmode: dark:border-zinc-900 dark:bg-zinc-800 dark:placeholder-zinc-400 border-zinc-200 bg-zinc-100
+
+//  dark:focus:invalid:border-red-400 dark:focus:invalid:ring-red-200 dark:valid:border-zinc-400 dark:invalid:border-red-400
+
+// placeholder:text-zinc-400 border-zinc-200 text-zinc-700
+
 export function Input({
   type,
   validationText,
@@ -31,7 +37,7 @@ export function Input({
         <input
           type={type}
           id={name}
-          className="w-full rounded-md py-3 focus:invalid:border-red-200 focus:invalid:ring-red-200 placeholder:font-normal placeholder:text-zinc-400 border-zinc-200 text-zinc-700  text-sm shadow-sm peer valid:border-zinc-200 invalid:border-red-200 "
+          className="w-full rounded-md py-3 text-sm shadow-sm peer placeholder:text-zinc-400 border-zinc-200 text-zinc-700   valid:border-zinc-200 focus:invalid:border-red-200 focus:invalid:ring-red-200 placeholder:font-normal invalid:border-red-200 dark:focus:invalid:border-red-400 dark:focus:invalid:ring-red-200 dark:valid:border-zinc-400 dark:invalid:border-red-400"
           placeholder={placeholder}
           minLength={min}
           onChange={onChange}
@@ -68,12 +74,12 @@ export function Checkbox({
           type="checkbox"
           name={name}
           id={name}
-          className="h-5 w-5 rounded-md border-zinc-200 bg-white shadow-sm"
+          className="h-5 w-5 rounded-md border-zinc-200 bg-white shadow-sm enabled:checked:bg-blue-400 checked:bg-blue-400 hover:checked:bg-blue-400"
           onChange={onChange}
           defaultChecked={isChecked}
         />
 
-        <span className="text-sm text-zinc-700">{label}</span>
+        <span className="text-sm">{label}</span>
       </label>
     </div>
   );

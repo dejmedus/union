@@ -46,7 +46,7 @@ export default function Preferences({
 
   return (
     <div className=" max-w-xl lg:max-w-3xl">
-      <h1 className="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl md:text-4xl">
+      <h1 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">
         Preferences
       </h1>
 

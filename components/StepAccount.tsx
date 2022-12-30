@@ -74,11 +74,11 @@ export default function Account({
       ) : null}
 
       <div className="peer-[.is-open]:opacity-40 max-w-xl lg:max-w-3xl">
-        <h1 className="mt-2 text-2xl font-bold text-zinc-900 sm:text-3xl md:text-4xl">
+        <h1 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">
           Welcome to Union
         </h1>
 
-        <p className="mt-4 leading-relaxed text-zinc-500">
+        <p className="mt-4 leading-relaxed">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
           dolorum aliquam, quibusdam aperiam voluptatum.
         </p>
@@ -144,18 +144,18 @@ export default function Account({
           />
 
           <div className="col-span-6">
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm">
               By creating an account, you agree to our{" "}
               <button
                 onClick={toggleTermsModal}
-                className="text-zinc-700 hover:text-blue-400 underline"
+                className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
               >
                 terms and conditions
               </button>{" "}
               and{" "}
               <button
                 onClick={togglePrivacyModal}
-                className="text-zinc-700 hover:text-blue-400 underline"
+                className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
               >
                 privacy policy
               </button>
@@ -175,11 +175,11 @@ export default function Account({
               Next Step &rarr;
             </button>
 
-            <p className="mt-4 text-sm text-zinc-500 sm:mt-0">
+            <p className="mt-4 text-sm sm:mt-0">
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="text-zinc-700 underline hover:text-blue-400"
+                className="dark:text-zinc-400 text-zinc-700 underline hover:text-blue-400"
               >
                 Log in
               </Link>
@@ -202,12 +202,12 @@ interface ModalProps {
 function Modal({ title, body, id, toggleModal }: ModalProps) {
   return (
     <div
-      className="is-open peer z-20 rounded-2xl border border-blue-100 bg-white p-8 shadow-lg max-w-lg absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      className="is-open peer z-20 rounded-2xl border dark:border-zinc-900 border-blue-100 dark:bg-black bg-white p-8 shadow-lg max-w-lg absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       role="alert"
       id={id}
     >
       <div className="items-center sm:flex">
-        <span className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-400 text-white">
+        <span className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-blue-400 dark:text-black text-white">
           <svg
             className="h-3 w-3"
             fill="currentColor"
@@ -225,14 +225,14 @@ function Modal({ title, body, id, toggleModal }: ModalProps) {
         <p className="mt-3 text-lg font-medium sm:mt-0 sm:ml-3">{title}</p>
       </div>
 
-      <p className="my-4 text-zinc-500 h-48 max-h-48 p-1 rounded bg-zinc-100 overflow-scroll">
+      <p className="my-4 h-48 max-h-48 p-1 rounded bg-zinc-100 dark:bg-zinc-900 overflow-scroll">
         {body}
       </p>
 
       <button
         name={id}
         onClick={toggleModal}
-        className="inline-block w-full rounded-lg bg-blue-400 hover:bg-blue-500 px-5 py-2 text-center text-sm font-semibold text-white sm:w-auto"
+        className="inline-block w-full rounded-lg dark:text-black bg-blue-400 hover:bg-blue-500 px-5 py-2 text-center text-sm font-semibold text-white sm:w-auto"
       >
         Mark as Read
       </button>
