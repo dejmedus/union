@@ -1,4 +1,4 @@
-import { ButtonRound } from "./LinkButton";
+import { ButtonRound } from "./Buttons";
 
 const Pricing = () => {
   return (

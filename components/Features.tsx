@@ -1,4 +1,4 @@
-import Button from "@/components/LinkButton";
+import Button from "@/components/Buttons";
 
 const Features = () => {
   return (

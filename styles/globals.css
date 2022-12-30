@@ -21,6 +21,7 @@ button {
   font-family: var(--unbounded-font);
 }
 
+p button,
 label,
 input,
 a,

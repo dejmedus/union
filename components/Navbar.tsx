@@ -1,6 +1,6 @@
 import Navlink from "@/components/Navlink";
 import Logo from "./Logo";
-import Button from "./LinkButton";
+import Button from "./Buttons";
 
 const Navbar = () => {
   return (
