@@ -1,6 +1,6 @@
-import Image from 'next/image'
-import people from '../assets/images/DrawKit/people.png'
-// md:grid md:grid-cols-2 md:items-center
+import Image from "next/image";
+import people from "../assets/images/DrawKit/people.png";
+
 const Hero = () => {
   return (
     <section className="overflow-hidden bg-white flex gap-2 py-4">
@@ -28,12 +28,11 @@ const Hero = () => {
       />
     </section>
   );
-}
+};
 
-export default Hero
+export default Hero;
 
-function SignupInput()
-{
+function SignupInput() {
   return (
     <form className="mt-6">
       <div className="relative max-w-lg">
