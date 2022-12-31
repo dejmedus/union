@@ -1,7 +1,7 @@
 import { Input, Checkbox } from "./Inputs";
 
 interface PreferencesProps {
-  accountDetails: {
+  formData: {
     name: string;
     username: string;
     email: string;
@@ -12,7 +12,7 @@ interface PreferencesProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Preferences = ({ accountDetails, onChange }: PreferencesProps) => {
+const Preferences = ({ formData, onChange }: PreferencesProps) => {
   return (
     <div className="mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6">
       <Input
@@ -24,7 +24,7 @@ const Preferences = ({ accountDetails, onChange }: PreferencesProps) => {
         min={1}
         half={false}
         onChange={onChange}
-        value={accountDetails ? accountDetails.number : false}
+        value={formData ? formData.number : false}
       />
     </div>
   );

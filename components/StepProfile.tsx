@@ -1,7 +1,7 @@
 import { Input, Checkbox } from "./Inputs";
 
 interface ComponentProps {
-  accountDetails: {
+  formData: {
     name: string;
     username: string;
     email: string;
@@ -12,7 +12,7 @@ interface ComponentProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Component = ({ accountDetails, onChange }: ComponentProps) => {
+const Component = ({ formData, onChange }: ComponentProps) => {
   return (
     <div className="mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6">
       <Input
@@ -24,7 +24,7 @@ const Component = ({ accountDetails, onChange }: ComponentProps) => {
         min={1}
         half={false}
         onChange={onChange}
-        value={accountDetails ? accountDetails.celeb : false}
+        value={formData ? formData.celeb : false}
       />
     </div>
   );

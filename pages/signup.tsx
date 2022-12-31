@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
+
 import SignupSteps from "@/components/SignupSteps";
 
 import Account from "@/components/StepAccount";
@@ -25,8 +26,30 @@ function Signup() {
     });
   };
 
+  const [formData, setFormData] = useState(accountDetails);
+
+  const nextStep = () => {
+    if (Object.keys(formData).length !== 0) {
+      setAccountDetails((current) => ({
+        ...current,
+        ...formData,
+      }));
+    }
+    currentStep < 3 && setCurrentStep((current) => current + 1);
+  };
+
+  const backStep = () => {
+    if (Object.keys(formData).length !== 0) {
+      setAccountDetails((current) => ({
+        ...current,
+        ...formData,
+      }));
+    }
+    currentStep < 3 && setCurrentStep((current) => current - 1);
+  };
+
   const genericProps = {
-    accountDetails: accountDetails,
+    formData: formData,
     onChange: onChange,
   };
 
@@ -67,32 +90,6 @@ function Signup() {
     //   ),
     // },
   ];
-
-  const [formData, setFormData] = useState(accountDetails);
-
-  // if there is new formData set it to accountDetails index currentStep
-  // [        // ...current.slice(0, currentStep),
-  // formData,
-  // ...current.slice(currentStep + 1),]
-  const nextStep = () => {
-    if (Object.keys(formData).length !== 0) {
-      setAccountDetails((current) => ({
-        ...current,
-        ...formData,
-      }));
-    }
-    currentStep < 3 && setCurrentStep((current) => current + 1);
-  };
-
-  const backStep = () => {
-    if (Object.keys(formData).length !== 0) {
-      setAccountDetails((current) => ({
-        ...current,
-        ...formData,
-      }));
-    }
-    currentStep < 3 && setCurrentStep((current) => current - 1);
-  };
 
   const step = stepDetails[currentStep];
 
@@ -145,6 +142,7 @@ function Signup() {
               <button
                 onClick={nextStep}
                 className="inline-block shrink-0 rounded-md bg-blue-400 border border-blue-400 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-400 focus:outline-none focus:ring active:text-blue-500 disabled:border-zinc-400 disabled:bg-zinc-400 disabled:text-zinc-300 hover:disabled:text-zinc-300 hover:disabled:bg-zinc-400"
+                disabled={modalOpen}
                 // disabled={
                 //   // if name, username, and email have not been filled out, button cannot be clicked
                 //   !formData.name || !formData.username || !formData.email

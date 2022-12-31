@@ -2,7 +2,7 @@ import { Input, Checkbox } from "./Inputs";
 import { useState } from "react";
 
 interface ComponentProps {
-  accountDetails: {
+  formData: {
     name: string;
     username: string;
     email: string;
@@ -16,7 +16,7 @@ interface ComponentProps {
 }
 
 const Component = ({
-  accountDetails,
+  formData,
   onChange,
   modalOpen,
   setModalOpen,
@@ -65,7 +65,7 @@ const Component = ({
           min={1}
           half={true}
           onChange={onChange}
-          value={accountDetails ? accountDetails.name : false}
+          value={formData ? formData.name : false}
         />
         <Input
           type="text"
@@ -76,7 +76,7 @@ const Component = ({
           min={4}
           half={true}
           onChange={onChange}
-          value={accountDetails ? accountDetails.username : false}
+          value={formData ? formData.username : false}
         />
         <Input
           type="email"
@@ -87,7 +87,7 @@ const Component = ({
           min={3}
           half={false}
           onChange={onChange}
-          value={accountDetails ? accountDetails.email : false}
+          value={formData ? formData.email : false}
         />
 
         <Checkbox
@@ -96,7 +96,7 @@ const Component = ({
           name="mailingList"
           half={false}
           onChange={onChange}
-          isChecked={accountDetails ? accountDetails.mailingList : false}
+          isChecked={formData ? formData.mailingList : false}
         />
         <div className="col-span-6">
           <p className="text-sm">
