@@ -35,6 +35,7 @@ export function Input({
 
       <div className="relative mt-1">
         <input
+          key={name}
           type={type}
           id={name}
           className="w-full rounded-md py-3 text-sm shadow-sm peer placeholder:text-zinc-400 border-zinc-200 text-zinc-700   valid:border-zinc-200 focus:invalid:border-red-200 focus:invalid:ring-red-200 placeholder:font-normal invalid:border-red-200 dark:focus:invalid:border-red-400 dark:focus:invalid:ring-red-200 dark:valid:border-zinc-400 dark:invalid:border-red-400"
