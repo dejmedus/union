@@ -1,13 +1,17 @@
 interface SignupStepProps {
   currentStep: number;
+  steps: string[];
+  modalOpen: boolean;
 }
-const SignupSteps = ({ currentStep }: SignupStepProps) => {
-  const mockSteps = ["Account", "Preferences", "Photos", "Confirmation"];
-
+const SignupSteps = ({ currentStep, steps, modalOpen }: SignupStepProps) => {
   return (
-    <div className="grid justify-items-center my-2 md:my-4">
+    <div
+      className={`grid justify-items-center my-2 md:my-4 ${
+        modalOpen ? "opacity-40" : ""
+      }`}
+    >
       <ol className="flex gap-2 sm:gap-4 text-xs font-medium text-zinc-500">
-        {mockSteps.map((step, index) => {
+        {steps.map((step, index) => {
           {
             return currentStep > index ? (
               <Complete order={index} name={step} />
@@ -31,7 +35,7 @@ interface StepProps {
 }
 function Complete({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex items-center w-28 text-green-400">
+    <li key={order} className="flex items-center w-26 text-green-400">
       <span className="rounded bg-green-50 p-1.5 text-green-200 dark:bg-green-300 dark:text-green-50">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +58,7 @@ function Complete({ order, name }: StepProps) {
 
 function Current({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex items-center text-blue-400 w-28">
+    <li key={order} className="flex items-center text-blue-400 w-26">
       <span className="h-6 w-6 rounded bg-blue-50 dark:bg-blue-400 dark:text-blue-50 text-center text-[10px] font-bold leading-6">
         {order}
       </span>
@@ -66,7 +70,7 @@ function Current({ order, name }: StepProps) {
 
 function Next({ order, name }: StepProps) {
   return (
-    <li key={order} className="flex items-center w-28">
+    <li key={order} className="flex items-center w-26">
       <span className="h-6 w-6 rounded bg-zinc-50 text-center text-[10px] font-bold leading-6 text-zinc-600">
         {order}
       </span>

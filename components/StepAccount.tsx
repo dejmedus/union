@@ -1,57 +1,36 @@
-import Link from "next/link";
-import { Input, Checkbox } from "@/components/Inputs";
+import { Input, Checkbox } from "./Inputs";
 import { useState } from "react";
 
-interface AccountProps {
-  currentStep: number;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-  accountDetails: object[];
-  setAccountDetails: React.Dispatch<React.SetStateAction<object[]>>;
+interface ComponentProps {
+  accountDetails: {
+    name: string;
+    username: string;
+    email: string;
+    mailingList: boolean;
+    celeb: string;
+    number: string;
+  };
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Account({
-  currentStep,
-  setCurrentStep,
+const Component = ({
   accountDetails,
-  setAccountDetails,
-}: AccountProps) {
-  const [formData, setFormData] = useState(
-    accountDetails[currentStep]
-      ? accountDetails[currentStep]
-      : {
-          name: "",
-          username: "",
-          email: "",
-        }
-  );
-
-  // if there is new formData set it to accountDetails index currentStep
-  const nextStep = () => {
-    if (Object.keys(formData).length !== 0) {
-      // setAccountDetails((current) => [formData, ...current.slice(1)]);
-      setAccountDetails((current) => [
-        ...current.slice(0, currentStep - 1),
-        formData,
-        ...current.slice(currentStep + 1),
-      ]);
-    }
-    currentStep < 3 && setCurrentStep((current) => current + 1);
-  };
-
+  onChange,
+  modalOpen,
+  setModalOpen,
+}: ComponentProps) => {
   const [privacyModal, setPrivacyModal] = useState(false);
   const [termsModal, setTermsModal] = useState(false);
 
-  const togglePrivacyModal = () => setPrivacyModal((current) => !current);
-  const toggleTermsModal = () => setTermsModal((current) => !current);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked, type } = e.target;
-    const inputValue = type == "checkbox" ? checked : value;
-
-    setFormData({
-      ...formData,
-      [name]: inputValue,
-    });
+  const togglePrivacyModal = () => {
+    setPrivacyModal((current) => !current);
+    setModalOpen((current) => !current);
+  };
+  const toggleTermsModal = () => {
+    setTermsModal((current) => !current);
+    setModalOpen((current) => !current);
   };
 
   return (
@@ -72,125 +51,78 @@ export default function Account({
           toggleModal={toggleTermsModal}
         />
       ) : null}
+      <div
+        className={`mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6 ${
+          modalOpen ? "opacity-40" : ""
+        }`}
+      >
+        <Input
+          type="text"
+          validationText="Name field cannot be blank"
+          label="Name"
+          name="name"
+          placeholder="Enter Name"
+          min={1}
+          half={true}
+          onChange={onChange}
+          value={accountDetails ? accountDetails.name : false}
+        />
+        <Input
+          type="text"
+          validationText="Username must be atleast 4 characters long"
+          label="Username"
+          name="username"
+          placeholder="Enter Username"
+          min={4}
+          half={true}
+          onChange={onChange}
+          value={accountDetails ? accountDetails.username : false}
+        />
+        <Input
+          type="email"
+          validationText="Please enter a valid email"
+          label="Email"
+          name="email"
+          placeholder="Enter Email"
+          min={3}
+          half={false}
+          onChange={onChange}
+          value={accountDetails ? accountDetails.email : false}
+        />
 
-      <div className="peer-[.is-open]:opacity-40 max-w-xl lg:max-w-3xl">
-        <h1 className="mt-2 text-2xl font-bold sm:text-3xl md:text-4xl">
-          Welcome to Union
-        </h1>
-
-        <p className="mt-4 leading-relaxed">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-          dolorum aliquam, quibusdam aperiam voluptatum.
-        </p>
-
-        <div className="mt-8 grid grid-cols-6 gap-6">
-          <Input
-            type="text"
-            validationText="Name field cannot be blank"
-            label="Name"
-            name="name"
-            placeholder="Enter Name"
-            min={1}
-            half={true}
-            onChange={onChange}
-            value={
-              accountDetails[currentStep]
-                ? accountDetails[currentStep].name
-                : false
-            }
-          />
-          <Input
-            type="text"
-            validationText="Username must be atleast 4 characters long"
-            label="Username"
-            name="username"
-            placeholder="Enter Username"
-            min={4}
-            half={true}
-            onChange={onChange}
-            value={
-              accountDetails[currentStep]
-                ? accountDetails[currentStep].username
-                : false
-            }
-          />
-          <Input
-            type="email"
-            validationText="Please enter a valid email"
-            label="Email"
-            name="email"
-            placeholder="Enter Email"
-            min={3}
-            half={false}
-            onChange={onChange}
-            value={
-              accountDetails[currentStep]
-                ? accountDetails[currentStep].email
-                : false
-            }
-          />
-
-          <Checkbox
-            label="I want to receive emails about events, updates and
+        <Checkbox
+          label="I want to receive emails about events, updates and
                 announcements."
-            name="mailingList"
-            half={false}
-            onChange={onChange}
-            isChecked={
-              accountDetails[currentStep]
-                ? accountDetails[currentStep].mailingList
-                : false
-            }
-          />
-
-          <div className="col-span-6">
-            <p className="text-sm">
-              By creating an account, you agree to our{" "}
-              <button
-                onClick={toggleTermsModal}
-                className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
-              >
-                terms and conditions
-              </button>{" "}
-              and{" "}
-              <button
-                onClick={togglePrivacyModal}
-                className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
-              >
-                privacy policy
-              </button>
-              .
-            </p>
-          </div>
-
-          <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
+          name="mailingList"
+          half={false}
+          onChange={onChange}
+          isChecked={accountDetails ? accountDetails.mailingList : false}
+        />
+        <div className="col-span-6">
+          <p className="text-sm">
+            By creating an account, you agree to our{" "}
             <button
-              onClick={nextStep}
-              className="inline-block shrink-0 rounded-md bg-blue-400 border border-blue-400 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-400 focus:outline-none focus:ring active:text-blue-500 disabled:border-zinc-400 disabled:bg-zinc-400 disabled:text-zinc-300 hover:disabled:text-zinc-300 hover:disabled:bg-zinc-400"
-              // disabled={
-              //   // if name, username, and email have not been filled out, button cannot be clicked
-              //   !formData.name || !formData.username || !formData.email
-              // }
+              onClick={toggleTermsModal}
+              className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
             >
-              Next Step &rarr;
+              terms and conditions
+            </button>{" "}
+            and{" "}
+            <button
+              onClick={togglePrivacyModal}
+              className="dark:text-zinc-400 text-zinc-700 hover:text-blue-400 underline"
+            >
+              privacy policy
             </button>
-
-            <p className="mt-4 text-sm sm:mt-0">
-              Already have an account?{" "}
-              <Link
-                href="/login"
-                className="dark:text-zinc-400 text-zinc-700 underline hover:text-blue-400"
-              >
-                Log in
-              </Link>
-              .
-            </p>
-          </div>
+            .
+          </p>
         </div>
       </div>
     </>
   );
-}
+};
+
+export default Component;
 
 interface ModalProps {
   title: string;
@@ -202,7 +134,7 @@ interface ModalProps {
 function Modal({ title, body, id, toggleModal }: ModalProps) {
   return (
     <div
-      className="is-open peer z-20 rounded-2xl border dark:border-zinc-900 border-blue-100 dark:bg-black bg-white p-8 shadow-lg max-w-lg absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+      className="z-20 backdrop-opacity-40 rounded-2xl border dark:border-zinc-900 border-blue-100 dark:bg-black bg-white p-8 shadow-lg max-w-lg absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
       role="alert"
       id={id}
     >

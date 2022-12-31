@@ -1,6 +1,6 @@
 import { Input, Checkbox } from "./Inputs";
 
-interface PreferencesProps {
+interface ComponentProps {
   accountDetails: {
     name: string;
     username: string;
@@ -12,22 +12,22 @@ interface PreferencesProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Preferences = ({ accountDetails, onChange }: PreferencesProps) => {
+const Component = ({ accountDetails, onChange }: ComponentProps) => {
   return (
     <div className="mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6">
       <Input
         type="text"
         validationText="Name field cannot be blank"
-        label="Number"
-        name="number"
-        placeholder="Enter Number"
+        label="Celebrity Crush"
+        name="celeb"
+        placeholder="Enter Name"
         min={1}
         half={false}
         onChange={onChange}
-        value={accountDetails ? accountDetails.number : false}
+        value={accountDetails ? accountDetails.celeb : false}
       />
     </div>
   );
 };
 
-export default Preferences;
+export default Component;
