@@ -1,4 +1,4 @@
-import { Input, Checkbox } from "./Inputs";
+import { Input, Checkbox } from "@/common/Inputs";
 
 interface ComponentProps {
   formData: {

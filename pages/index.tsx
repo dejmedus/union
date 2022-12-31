@@ -1,13 +1,18 @@
 import Head from "next/head";
 import Banner from "@/components/Banner";
+
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
-import Pricing from "@/components/Pricing";
-import FAQs from "@/components/FAQs";
+import Hero from "@/landing/Hero";
+import Features from "@/landing/Features";
+import Pricing from "@/landing/Pricing";
+import FAQs from "@/landing/FAQs";
+
+import Match from "@/components/Homepage/Match";
+
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  const signedIn = true;
   return (
     <>
       <Head>
@@ -18,11 +23,20 @@ export default function Home() {
       </Head>
       <main>
         <Banner />
-        <Navbar />
-        <Hero />
-        <Features />
-        <Pricing />
-        <FAQs />
+        <Navbar session={signedIn} />
+
+        {!signedIn ? (
+          <>
+            <Hero />
+            <Features />
+            <Pricing />
+            <FAQs />
+          </>
+        ) : (
+          <>
+            <Match />
+          </>
+        )}
         <Footer />
       </main>
     </>

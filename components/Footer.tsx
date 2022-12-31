@@ -1,4 +1,4 @@
-import Navlink from "@/components/Navlink";
+import Navlink from "@/components/Common/Navlink";
 
 const Footer = () => {
   return (

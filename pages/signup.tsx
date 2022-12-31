@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Link from "next/link";
 
-import SignupSteps from "@/components/SignupSteps";
+import SignupSteps from "@/signup/SignupSteps";
 
-import Account from "@/components/StepAccount";
-import Profile from "@/components/StepProfile";
-import Preferences from "@/components/StepPreferences";
+import Account from "@/signup/Account
+import Profile from "@/signup/Profile"
+import Preferences from "@/signup/Preferences"
 
 const signup = () => {
   return <Signup />;

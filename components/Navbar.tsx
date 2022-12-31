@@ -1,8 +1,11 @@
-import Navlink from "@/components/Navlink";
-import Logo from "./Logo";
-import Button from "./Buttons";
+import Navlink from "@/common/Navlink";
+import Logo from "@/common/Logo";
+import Button from "@/common/Buttons";
 
-const Navbar = () => {
+interface NavbarProps {
+  session: boolean;
+}
+const Navbar = ({ session }: NavbarProps) => {
   return (
     <header id="navbar" aria-label="Site Header" className="">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -14,14 +17,22 @@ const Navbar = () => {
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Site Nav" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
-                <Navlink name="About" path="#about" />
-                <Navlink name="Pricing" path="#pricing" />
-                <Navlink name="FAQs" path="#faqs" />
+                {!session ? (
+                  <>
+                    <Navlink name="About" path="#about" />
+                    <Navlink name="Pricing" path="#pricing" />
+                    <Navlink name="FAQs" path="#faqs" />
+                  </>
+                ) : null}
               </ul>
             </nav>
 
             <div className="flex items-center gap-4">
-              <Button content="Login" path="/login" />
+              {!session ? (
+                <Button content="Login" path="/login" />
+              ) : (
+                <Button content="Account" path="/account" />
+              )}
 
               <div className="block md:hidden">
                 <button className="p-2 border border-violet-400 bg-zinc-50 text-violet-400 transition hover:bg-violet-200">

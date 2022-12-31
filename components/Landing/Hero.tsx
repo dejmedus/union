@@ -1,5 +1,5 @@
 import Image from "next/image";
-import people from "../assets/images/DrawKit/people.png";
+import people from "@/images/DrawKit/people.png";
 
 const Hero = () => {
   return (
@@ -49,10 +49,11 @@ function SignupInput() {
         />
 
         <button
-          className="absolute top-1/2 right-1 -translate-y-1/2 rounded-r-full bg-blue-400 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-500 dark:text-zinc-800"
+          // right-1 px-4 py-3 or right-0 px-5 py-4 //rounded-r-full or rounded-full
+          className="absolute top-1/2 -translate-y-1/2 rounded-r-full bg-blue-400 right-1 px-4 py-3 text-sm font-medium text-white transition hover:bg-blue-500 dark:text-zinc-800"
           type="button"
         >
-          Signup
+          Sign up
         </button>
       </div>
     </form>

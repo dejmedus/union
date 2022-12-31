@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { Input } from "@/components/Inputs";
+import { Input } from "@/components/Common/Inputs";
 
 const login = () => {
   return <Login />;
