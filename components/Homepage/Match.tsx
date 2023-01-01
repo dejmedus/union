@@ -1,6 +1,28 @@
+import { useState } from "react";
 import { RightArrowSVG, DownArrowSVG } from "@/images/svg/arrows";
 import { HeartBadge, StarBadge, DialogBadge } from "@/homepage/Badges";
-const Match = () => {
+
+const Match = ({ session }: { session: object }) => {
+  const matchCardGenericProps = {
+    multi_gender: session.multi_gender_pref,
+  };
+
+  const [filters, setFilters] = useState({
+    level_1: false,
+    level_2: false,
+  });
+  const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, checked } = e.target;
+    // if Matches is toggled on, we want level 1 matches from db
+    // if Connections is toggle on, we want level 2 matches from db
+    // if nothing is toggled on, we want all level matches
+    const matchLevel = name == "Matches" ? "level_1" : "level_2";
+    setFilters({
+      ...filters,
+      [matchLevel]: checked,
+    });
+  };
+
   return (
     <div className="max-w-screen-xl px-4 py-2 mx-auto sm:px-6 sm:py-4 lg:px-8">
       <header>
@@ -15,66 +37,53 @@ const Match = () => {
           </button>
         </div>
 
-        <Dropdown name="Filter">
+        <Dropdown
+          name="Match Level"
+          onDropdownReset={() => {
+            setFilters({ level_1: false, level_2: false });
+          }}
+        >
           <DropdownCheckbox>
-            <DropdownCheckboxEntry name="Matches" />
-            <DropdownCheckboxEntry name="Connections" />
+            <DropdownCheckboxEntry
+              name="Matches"
+              onChange={handleFilters}
+              value={filters.level_1}
+            />
+            <DropdownCheckboxEntry
+              name="Connections"
+              onChange={handleFilters}
+              value={filters.level_2}
+            />
           </DropdownCheckbox>
         </Dropdown>
 
-        <Dropdown name="Sort">
+        {/* <Dropdown name="Sort">
           <DropdownRadio>
             <DropdownRadioEntry name="Match Date ASC" dropdownName="sort" />
             <DropdownRadioEntry name="Match Date DESC" dropdownName="sort" />
           </DropdownRadio>
-        </Dropdown>
+        </Dropdown> */}
       </div>
 
       <ul className="grid gap-4 mt-4 sm:grid-cols-2 lg:grid-cols-4">
-        <MatchCard
-          photo={
-            "I found a rock in a Waltmart parking lot yesterday shaped like a poptart"
-          }
-          gender="t"
-          name="sam"
-          values={["honesty", "kindness", "acceptance", "loyalty"]}
-          badges={["heart", "star", "dialog"]}
-        />
-        <MatchCard
-          photo={"Seeking a step-dad for my pomeranian Mikey Bobikey"}
-          gender="s"
-          name="claire"
-          values={["honesty", "kindness"]}
-          badges={["heart"]}
-        />
-        <MatchCard
-          photo={"I dunno what to write here"}
-          gender="o"
-          name="terry"
-          values={["honesty", "kindness"]}
-          badges={["star"]}
-        />
-        <MatchCard
-          photo={"Beer. Fishing. Trucks. Hallmark Movies."}
-          gender="h"
-          name="craig"
-          values={["honesty", "kindness"]}
-          badges={[]}
-        />
-        <MatchCard
-          photo={":)"}
-          gender="h"
-          name="frederick"
-          values={["honesty", "kindness"]}
-          badges={["dialog"]}
-        />
-        <MatchCard
-          photo={null}
-          gender="h"
-          name="wade"
-          values={["honesty", "kindness"]}
-          badges={[]}
-        />
+        {/* if user has not filtered at all, show all matches */}
+        {/* if user has filtered by match level, only show those levels */}
+        {session.matches.map((match) => {
+          return (filters.level_1 == false && filters.level_2 == false) ||
+            filters[match.match_level] == true ? (
+            <MatchCard
+              key={match.id}
+              photo={match.photo}
+              intro={match.intro}
+              gender={match.gender}
+              name={match.name}
+              values={match.values}
+              badges={match.badges}
+              match_level={match.match_level}
+              {...matchCardGenericProps}
+            />
+          ) : null;
+        })}
       </ul>
     </div>
   );
@@ -83,11 +92,14 @@ const Match = () => {
 export default Match;
 
 interface MatchCardProps {
-  photo: string | React.ReactNode | null;
+  photo: React.ReactNode | null;
+  intro: string;
   badges?: string[];
   name: string;
   values: string[];
   gender: string;
+  multi_gender: boolean;
+  match_level: string;
 }
 
 const genderKey = {
@@ -97,17 +109,28 @@ const genderKey = {
   o: "group-hover:bg-orange-300",
 };
 
-function MatchCard({ photo, name, values, badges, gender }: MatchCardProps) {
+function MatchCard({
+  photo,
+  intro,
+  name,
+  values,
+  badges,
+  gender,
+  multi_gender,
+  match_level,
+}: MatchCardProps) {
   const cardColor = genderKey[gender as keyof typeof genderKey];
   return (
     <li>
-      <a href="PROFILE-LINK" className="block overflow-hidden group">
+      <a href="MATCH-PROFILE" className="block overflow-hidden group">
         <div
-          className={`${cardColor} h-[150px] sm:h-[250px] w-full transition duration-500 bg-blue-400`}
+          className={`${
+            multi_gender ? cardColor : "group-hover:bg-zinc-400"
+          } h-[200px] sm:h-[250px] w-full transition duration-500 bg-blue-400`}
         >
-          {typeof photo == "string" ? (
+          {match_level == "level_1" ? (
             <h3 className=" p-1 text-zinc-100 dark:text-zinc-900 text-3xl overflow-scroll font-semibold opacity-30 transition duration-500 group-hover:opacity-60">
-              &quot;{photo}&quot;
+              &quot;{intro}&quot;
             </h3>
           ) : (
             <>{photo}</>
@@ -147,64 +170,38 @@ function MatchCard({ photo, name, values, badges, gender }: MatchCardProps) {
     </li>
   );
 }
-
-interface DropdownProps {
-  children: React.ReactNode;
-  name?: string;
+interface DropdownEntryCheckboxProps {
+  name: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: boolean;
 }
 
-function Dropdown({ name, children }: DropdownProps) {
+function DropdownCheckboxEntry({
+  name,
+  onChange,
+  value,
+}: DropdownEntryCheckboxProps) {
   return (
-    <div className="relative">
-      <details className="group [&_summary::-webkit-details-marker]:hidden">
-        <summary className="flex items-center gap-2 pb-1 text-zinc-900 transition border-b border-zinc-400 cursor-pointer hover:border-zinc-600">
-          <p className="text-sm font-medium"> {name}</p>
+    <li>
+      <label htmlFor={name} className="inline-flex items-center gap-2">
+        <input
+          type="checkbox"
+          id={name}
+          name={name}
+          className="w-5 h-5 border-zinc-300 rounded"
+          onChange={onChange}
+          checked={value}
+        />
 
-          <span className="transition group-open:-rotate-180">
-            <DownArrowSVG />
-          </span>
-        </summary>
-
-        <div className="z-50 group-open:absolute group-open:top-auto group-open:left-0 group-open:mt-2">
-          <div className="bg-white border border-zinc-200 rounded w-96">
-            <header className="flex items-center justify-between p-4">
-              <button className="text-sm text-zinc-900 underline underline-offset-4">
-                Reset
-              </button>
-            </header>
-            <>{children}</>
-          </div>
-        </div>
-      </details>
-    </div>
-  );
-}
-interface DropdownChildrenProps {
-  children: React.ReactNode;
-}
-
-function DropdownCheckbox({ children }: DropdownChildrenProps) {
-  return (
-    <ul className="p-4 space-y-1 border-t border-zinc-200">
-      <>{children}</>
-    </ul>
-  );
-}
-
-function DropdownRadio({ children }: DropdownChildrenProps) {
-  return (
-    <ul className="p-4 space-y-1 border-t border-zinc-200">
-      <>{children}</>
-    </ul>
+        <span className="text-sm font-medium text-zinc-700">{name}</span>
+      </label>
+    </li>
   );
 }
 
 interface DropdownEntryRadioProps {
   name: string;
   dropdownName: string;
-}
-interface DropdownEntryCheckboxProps {
-  name: string;
 }
 
 function DropdownRadioEntry({ dropdownName, name }: DropdownEntryRadioProps) {
@@ -224,18 +221,58 @@ function DropdownRadioEntry({ dropdownName, name }: DropdownEntryRadioProps) {
   );
 }
 
-function DropdownCheckboxEntry({ name }: DropdownEntryCheckboxProps) {
-  return (
-    <li>
-      <label htmlFor={name} className="inline-flex items-center gap-2">
-        <input
-          type="checkbox"
-          id={name}
-          className="w-5 h-5 border-zinc-300 rounded"
-        />
+interface DropdownProps {
+  children: React.ReactNode;
+  name?: string;
+  onDropdownReset(event: React.MouseEvent<HTMLButtonElement>): void;
+}
 
-        <span className="text-sm font-medium text-zinc-700">{name}</span>
-      </label>
-    </li>
+function Dropdown({ name, children, onDropdownReset }: DropdownProps) {
+  return (
+    <div className="relative">
+      <details className="group [&_summary::-webkit-details-marker]:hidden">
+        <summary className="flex items-center gap-2 pb-1 text-zinc-900 transition border-b border-zinc-400 cursor-pointer hover:border-zinc-600">
+          <p className="text-sm font-medium"> {name}</p>
+
+          <span className="transition group-open:-rotate-180">
+            <DownArrowSVG />
+          </span>
+        </summary>
+
+        <div className="z-50 group-open:absolute group-open:top-auto group-open:left-0 group-open:mt-2">
+          <div className="bg-white border border-zinc-200 rounded w-96">
+            <header className="flex items-center justify-between p-4">
+              <button
+                onClick={onDropdownReset}
+                className="text-sm text-zinc-900 underline underline-offset-4"
+              >
+                Reset
+              </button>
+            </header>
+            <>{children}</>
+          </div>
+        </div>
+      </details>
+    </div>
+  );
+}
+
+interface DropdownChildrenProps {
+  children: React.ReactNode;
+}
+
+function DropdownCheckbox({ children }: DropdownChildrenProps) {
+  return (
+    <ul className="p-4 space-y-1 border-t border-zinc-200">
+      <>{children}</>
+    </ul>
+  );
+}
+
+function DropdownRadio({ children }: DropdownChildrenProps) {
+  return (
+    <ul className="p-4 space-y-1 border-t border-zinc-200">
+      <>{children}</>
+    </ul>
   );
 }
