@@ -62,7 +62,6 @@ function Signup() {
           dolorum aliquam, quibusdam aperiam voluptatum.`,
       component: (
         <Account
-          key="account"
           {...genericProps}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
@@ -72,12 +71,12 @@ function Signup() {
     {
       name: "Profile",
       body: null,
-      component: <Profile key="profile" {...genericProps} />,
+      component: <Profile {...genericProps} />,
     },
     {
       name: "Preferences",
       body: null,
-      component: <Preferences key="Account" {...genericProps} />,
+      component: <Preferences {...genericProps} />,
     },
     // {
     //   name: "Preferences",
