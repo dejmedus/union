@@ -1,15 +1,22 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Input } from "@/components/Common/Inputs";
+import { getProviders, signIn } from "next-auth/react";
 
-const login = () => {
-  return <Login />;
+const login = ({ providers }) => {
+  return <Login providers={providers} />;
 };
 
 export default login;
 
-function Login() {
-  const [formData, setFormData] = useState({});
+interface LoginProps {
+  providers: object;
+}
+
+function Login({ providers }: LoginProps) {
+  const [formData, setFormData] = useState<{ email: string; password: string }>(
+    { email: "", password: "" }
+  );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,7 +28,8 @@ function Login() {
   };
 
   function handleLogin() {
-    console.log(formData);
+    console.log(formData.email, formData.password);
+    // signIn("credentials", { username: formData.email, password: formData.password });
   }
 
   return (
@@ -35,7 +43,27 @@ function Login() {
           It&apos;s good to see you.
         </p>
 
-        <form
+        <div className="mt-6 mb-0 space-y-4 rounded-lg p-8 dark:shadow-zinc-800 shadow-2xl">
+          {providers
+            ? Object.values(providers).map((provider) => (
+                <div key={provider.name} style={{ marginBottom: 0 }}>
+                  <button
+                    className="block w-full rounded-lg border-2 border-zinc-900 transition duration-200  hover:bg-blue-400 hover:border-blue-400 hover:text-zinc-100 border:bg-zinc-900 dark:bg-zinc-100 text-zinc-900  px-5 py-3 text-sm font-medium dark:text-zinc-50"
+                    onClick={() => signIn(provider.id)}
+                  >
+                    Sign in with {provider.name}
+                  </button>
+                </div>
+              ))
+            : null}
+          <p className="text-center text-sm text-zinc-500">
+            No account?{" "}
+            <Link className="underline hover:text-zinc-700" href="/signup">
+              Sign up
+            </Link>
+          </p>
+        </div>
+        {/* <form
           action="post"
           className="mt-6 mb-0 space-y-4 rounded-lg p-8 dark:shadow-zinc-800 shadow-2xl"
         >
@@ -78,8 +106,15 @@ function Login() {
               Sign up
             </Link>
           </p>
-        </form>
+        </form> */}
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const providers = await getProviders();
+  return {
+    props: { providers },
+  };
 }

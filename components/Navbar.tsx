@@ -4,6 +4,7 @@ import Navlink from "@/common/Navlink";
 import Logo from "@/common/Logo";
 import Button from "@/common/Buttons";
 import { DownArrowSVG } from "@/images/svg/arrows";
+import { signOut } from "next-auth/react";
 
 interface NavbarProps {
   session: object | null;
@@ -33,7 +34,7 @@ const Navbar = ({ session }: NavbarProps) => {
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Site Nav" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
-                {!session ? (
+                {session == "authenticated" ? (
                   <>
                     <Navlink name="About" path="#about" />
                     <Navlink name="Pricing" path="#pricing" />
@@ -93,7 +94,6 @@ interface AccountDropdownProps {
   toggleDropdown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-// ${dropdown ? "inline-flex" : "hidden"}
 function AccountDropdown({
   user,
   dropdown,
@@ -131,15 +131,14 @@ function AccountDropdown({
               </div>
 
               <div className="p-2">
-                <form method="POST" action="#">
-                  <button
-                    type="submit"
-                    className="flex w-full items-center gap-2 rounded-lg px-4 py-1 hover:bg-red-50"
-                    role="menuitem"
-                  >
-                    <p className="text-sm text-red-700 ">Logout</p>
-                  </button>
-                </form>
+                <button
+                  type="submit"
+                  className="flex w-full items-center gap-2 rounded-lg px-4 py-1 hover:bg-red-50"
+                  role="menuitem"
+                  onClick={() => signOut()}
+                >
+                  <p className="text-sm text-red-700 ">Logout</p>
+                </button>
               </div>
             </div>
           </div>

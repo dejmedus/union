@@ -8,7 +8,7 @@ import {
 } from "@/homepage/Filters";
 import MatchCard from "@/homepage/MatchCard";
 
-const Match = ({ session }: { session: object }) => {
+const Match = ({ session }) => {
   const matchCardGenericProps = {
     multi_gender: session.multi_gender_pref,
   };

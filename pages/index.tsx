@@ -11,58 +11,63 @@ import Match from "@/components/Homepage/Match";
 
 import Footer from "@/components/Footer";
 
+import { useSession } from "next-auth/react";
+
 export default function Home() {
-  const session = {
-    user_name: "Bob",
-    notifications: {
-      read: [],
-      unread: [],
-    },
-    multi_gender_pref: true,
-    matches: [
-      {
-        id: 1,
-        name: "Sam",
-        gender: "t",
-        values: ["honesty", "kindness"],
-        badges: [],
-        photo: null,
-        intro:
-          "I found a rock in a Waltmart parking lot yesterday shaped like a poptart",
-        match_level: "level_1",
-      },
-      {
-        id: 2,
-        name: "Claire",
-        gender: "s",
-        values: ["honesty"],
-        badges: ["heart", "star", "dialog"],
-        photo: null,
-        intro: "Seeking a step-dad for my pomeranian Mikey Bobikey",
-        match_level: "level_1",
-      },
-      {
-        id: 3,
-        name: "Terry",
-        gender: "o",
-        values: ["honesty", "kindness", "acceptance"],
-        badges: ["dialog"],
-        photo: null,
-        intro: "I dunno what to write here",
-        match_level: "level_2",
-      },
-      {
-        id: 4,
-        name: "Craig",
-        gender: "h",
-        values: ["honesty", "kindness", "acceptance", "loyalty"],
-        badges: ["heart"],
-        photo: null,
-        intro: "Beer. Fishing. Trucks. Hallmark Movies.",
-        match_level: "level_1",
-      },
-    ],
-  };
+  // const session = {
+  //   user_name: "Bob",
+  //   notifications: {
+  //     read: [],
+  //     unread: [],
+  //   },
+  //   multi_gender_pref: true,
+  //   matches: [
+  //     {
+  //       id: 1,
+  //       name: "Sam",
+  //       gender: "t",
+  //       values: ["honesty", "kindness"],
+  //       badges: [],
+  //       photo: null,
+  //       intro:
+  //         "I found a rock in a Waltmart parking lot yesterday shaped like a poptart",
+  //       match_level: "level_1",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Claire",
+  //       gender: "s",
+  //       values: ["honesty"],
+  //       badges: ["heart", "star", "dialog"],
+  //       photo: null,
+  //       intro: "Seeking a step-dad for my pomeranian Mikey Bobikey",
+  //       match_level: "level_1",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Terry",
+  //       gender: "o",
+  //       values: ["honesty", "kindness", "acceptance"],
+  //       badges: ["dialog"],
+  //       photo: null,
+  //       intro: "I dunno what to write here",
+  //       match_level: "level_2",
+  //     },
+  //     {
+  //       id: 4,
+  //       name: "Craig",
+  //       gender: "h",
+  //       values: ["honesty", "kindness", "acceptance", "loyalty"],
+  //       badges: ["heart"],
+  //       photo: null,
+  //       intro: "Beer. Fishing. Trucks. Hallmark Movies.",
+  //       match_level: "level_1",
+  //     },
+  //   ],
+  // };
+
+  const { data: session, status } = useSession();
+
   return (
     <>
       <Head>
@@ -75,7 +80,7 @@ export default function Home() {
         <Banner />
         <Navbar session={session} />
 
-        {!session ? (
+        {status == "unauthenticated" ? (
           <>
             <Hero />
             <Features />
@@ -83,9 +88,7 @@ export default function Home() {
             <FAQs />
           </>
         ) : (
-          <>
-            <Match session={session} />
-          </>
+          <Match session={session} />
         )}
         <Footer />
       </main>
