@@ -14,22 +14,16 @@ interface LoginProps {
 }
 
 function Login({ providers }: LoginProps) {
-  const [formData, setFormData] = useState<{ email: string; password: string }>(
-    { email: "", password: "" }
-  );
+  const [email, setEmail] = useState<string>();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { value } = e.target;
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setEmail(value);
   };
 
   function handleLogin() {
-    console.log(formData.email, formData.password);
-    // signIn("credentials", { username: formData.email, password: formData.password });
+    // signIn("credentials", { username: email.email, password: email.password });
   }
 
   return (
@@ -63,22 +57,11 @@ function Login({ providers }: LoginProps) {
             </Link>
           </p>
         </div>
-        {/* <form
+        <form
           action="post"
           className="mt-6 mb-0 space-y-4 rounded-lg p-8 dark:shadow-zinc-800 shadow-2xl"
         >
           <p className="text-lg font-medium">Sign in to your account</p>
-          <Input
-            type="email"
-            validationText="Please enter a valid email"
-            label="Email"
-            name="email"
-            placeholder="Enter Email"
-            min={3}
-            half={false}
-            onChange={onChange}
-            value={false}
-          />
           <Input
             type="password"
             validationText="Please enter a valid password"
@@ -95,7 +78,7 @@ function Login({ providers }: LoginProps) {
             onClick={handleLogin}
             type="submit"
             className="block w-full rounded-lg bg-blue-400 hover:bg-blue-300 px-5 py-3 text-sm font-medium text-white disabled:border-zinc-400 disabled:bg-zinc-400 disabled:text-zinc-300 hover:disabled:text-zinc-300 hover:disabled:bg-zinc-400"
-            disabled={!formData.email || !formData.password}
+            disabled={!email}
           >
             Sign in
           </button>
@@ -106,7 +89,7 @@ function Login({ providers }: LoginProps) {
               Sign up
             </Link>
           </p>
-        </form> */}
+        </form>
       </div>
     </div>
   );
