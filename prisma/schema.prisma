@@ -10,10 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator nexusPrisma {
-  provider = "nexus-prisma"
-}
-
 // Next-Auth
 model Account {
   id                String  @id @default(auto()) @map("_id") @db.ObjectId
@@ -43,37 +39,18 @@ model Session {
 }
 
 model User {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt     DateTime      @default(now())
-  role          Role          @default(USER)
-  updatedAt     DateTime      @updatedAt
-  name          String?
-  email         String?       @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-  UserDetails   UserDetails[]
-}
-
-model VerificationToken {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-}
-
-//
-
-model UserDetails {
   id                  String           @id @default(auto()) @map("_id") @db.ObjectId
-  userId              String           @db.ObjectId
+  createdAt           DateTime         @default(now())
+  role                Role             @default(USER)
+  updatedAt           DateTime         @updatedAt
+  name                String?
+  email               String?          @unique
+  emailVerified       DateTime?
+  image               String?
+  mailingList         Boolean
   notifications       Notification[]
-  name                String
   username            String
-  gender              Genders
+  gender              Genders[]
   age                 Int
   orientation         Genders
   relationshipType    RelationshipType
@@ -87,15 +64,26 @@ model UserDetails {
   legalDrugs          Boolean
   pets                Boolean
   values              String[]
-  image               String?
   genderPref          String[]
   agePref             Int[]
   partnerKidsPref     Boolean
   intro               String
   bio                 String
   matches             Match[]
-  user                User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accounts            Account[]
+  sessions            Session[]
 }
+
+model VerificationToken {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+//
 
 model Notification {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
