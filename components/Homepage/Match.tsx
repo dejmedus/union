@@ -55,13 +55,6 @@ const Match = ({ session }) => {
             />
           </DropdownCheckbox>
         </Dropdown>
-
-        {/* <Dropdown name="Sort">
-          <DropdownRadio>
-            <DropdownRadioEntry name="Match Date ASC" dropdownName="sort" />
-            <DropdownRadioEntry name="Match Date DESC" dropdownName="sort" />
-          </DropdownRadio>
-        </Dropdown> */}
       </div>
 
       <ul className="grid justify-center sm:justify-start gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
