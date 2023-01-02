@@ -1,4 +1,5 @@
-import { Input, Checkbox } from "./Inputs";
+import { Input, Checkbox } from "@/common/Inputs";
+import { Multi, MultiCheckbox, MultiRadio } from "@/components/Common/Multis";
 import { useState } from "react";
 
 interface ComponentProps {
@@ -7,8 +8,6 @@ interface ComponentProps {
     username: string;
     email: string;
     mailingList: boolean;
-    celeb: string;
-    number: string;
   };
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   modalOpen: boolean;
@@ -78,16 +77,47 @@ const Component = ({
           onChange={onChange}
           value={formData ? formData.username : false}
         />
+        <Multi half={true} groupLabel="Your pronouns">
+          <MultiCheckbox
+            value={formData.gender["s"]}
+            groupName="gender"
+            onChange={onChange}
+            name="s"
+            label="she/her"
+          />
+          <MultiCheckbox
+            value={formData.gender["h"]}
+            groupName="gender"
+            onChange={onChange}
+            name="h"
+            label="he/him"
+          />
+          <MultiCheckbox
+            value={formData.gender["t"]}
+            groupName="gender"
+            onChange={onChange}
+            name="t"
+            label="they/them"
+          />
+          <MultiCheckbox
+            value={formData.gender["o"]}
+            groupName="gender"
+            onChange={onChange}
+            name="o"
+            label="other"
+          />
+        </Multi>
+
         <Input
-          type="email"
-          validationText="Please enter a valid email"
-          label="Email"
-          name="email"
-          placeholder="Enter Email"
-          min={3}
-          half={false}
+          type="number"
+          validationText="You must be over the age of 18 to use Union"
+          min={18}
+          placeholder="25"
           onChange={onChange}
-          value={formData ? formData.email : false}
+          label="Age"
+          value={formData.age}
+          half={true}
+          name="age"
         />
 
         <Checkbox

@@ -1,5 +1,5 @@
-import { Input, Checkbox } from "./Inputs";
-
+import { Input, Checkbox } from "@/common/Inputs";
+import { Multi, MultiCheckbox, MultiRadio } from "@/common/Multis";
 interface PreferencesProps {
   formData: {
     name: string;
@@ -26,6 +26,37 @@ const Preferences = ({ formData, onChange }: PreferencesProps) => {
         onChange={onChange}
         value={formData ? formData.number : false}
       />
+
+      <Multi half={true} groupLabel="Partners pronouns">
+        <MultiCheckbox
+          value={formData.genderPref["s"]}
+          groupName="genderPref"
+          onChange={onChange}
+          name="s"
+          label="she/her"
+        />
+        <MultiCheckbox
+          value={formData.genderPref["h"]}
+          groupName="genderPref"
+          onChange={onChange}
+          name="h"
+          label="he/him"
+        />
+        <MultiCheckbox
+          value={formData.genderPref["t"]}
+          groupName="genderPref"
+          onChange={onChange}
+          name="t"
+          label="they/them"
+        />
+        <MultiCheckbox
+          value={formData.genderPref["o"]}
+          groupName="genderPref"
+          onChange={onChange}
+          name="o"
+          label="other"
+        />
+      </Multi>
     </div>
   );
 };
