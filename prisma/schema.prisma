@@ -117,22 +117,22 @@ model Match {
 }
 
 enum RelationshipType {
-  casual
-  shortTerm
-  longTerm
-  life
+  CASUAL
+  SHORT
+  LONG
+  LIFE
 }
 
 enum Dynamic {
-  open
-  closed
+  OPEN
+  CLOSED
 }
 
 enum Genders {
-  s
-  h
-  t
-  o
+  S
+  H
+  T
+  O
 }
 
 enum Role {
