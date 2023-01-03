@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import SignupSteps from "@/signup/SignupSteps";
 
-import Account from "@/signup/Account
-import Profile from "@/signup/Profile"
-import Preferences from "@/signup/Preferences"
+import Account from "@/signup/Account";
+import Profile from "@/signup/Profile";
+import Preferences from "@/signup/Preferences";
 
 const signup = () => {
   return <Signup />;
@@ -13,7 +13,7 @@ const signup = () => {
 
 function Signup() {
   const [currentStep, setCurrentStep] = useState(0);
-  const [accountDetails, setAccountDetails] = useState({});
+  const [accountDetails, setAccountDetails] = useState({ gender: {} });
   const [modalOpen, setModalOpen] = useState(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -78,16 +78,6 @@ function Signup() {
       body: null,
       component: <Preferences {...genericProps} />,
     },
-    // {
-    //   name: "Preferences",
-    //   body: null,
-    //   initialInputsObj: {
-    //     name: "",
-    //   },
-    //   component: (
-    //     <StepInner key="Account" {...genericProps} />
-    //   ),
-    // },
   ];
 
   const step = stepDetails[currentStep];
@@ -125,7 +115,7 @@ function Signup() {
           {step.component}
 
           <div
-            className={`col-span-6 sm:flex sm:items-center gap:2 sm:gap-4 mt-1 sm:mt-2 ${
+            className={`col-span-6 sm:flex sm:items-center gap:2 sm:gap-4 mt-1 sm:mt-4 ${
               modalOpen ? "opacity-40" : ""
             }`}
           >

@@ -8,10 +8,15 @@ import { signOut } from "next-auth/react";
 
 interface NavbarProps {
   session: object | null;
+  user: object | null;
 }
-const Navbar = ({ session }: NavbarProps) => {
+const Navbar = ({ session, user }: NavbarProps) => {
   const [dropdown, toggleDropdown] = useState(false);
   const [notif, toggleNotif] = useState(false);
+
+  const unreadNotifs = user.notifications.filter(
+    (notif) => notif.read == false
+  );
 
   const dropdownProps = {
     dropdown: dropdown,
@@ -49,14 +54,8 @@ const Navbar = ({ session }: NavbarProps) => {
                 <Button content="Login" path="/login" />
               ) : (
                 <>
-                  <Notifications
-                    notifications={session.notifications.unread}
-                    {...notifProps}
-                  />
-                  <AccountDropdown
-                    user={session.user_name}
-                    {...dropdownProps}
-                  />
+                  <Notifications notifications={unreadNotifs} {...notifProps} />
+                  <AccountDropdown user={user.name} {...dropdownProps} />
                 </>
               )}
 

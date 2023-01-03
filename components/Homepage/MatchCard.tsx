@@ -12,10 +12,10 @@ interface MatchCardProps {
 }
 
 const genderKey = {
-  h: "group-hover:bg-red-400 ",
-  s: "group-hover:bg-pink-300",
-  t: "group-hover:bg-violet-400",
-  o: "group-hover:bg-orange-300",
+  H: "group-hover:bg-red-400 ",
+  S: "group-hover:bg-pink-300",
+  T: "group-hover:bg-violet-400",
+  O: "group-hover:bg-orange-300",
 };
 
 export default function MatchCard({
@@ -37,7 +37,7 @@ export default function MatchCard({
             multi_gender ? cardColor : "group-hover:bg-zinc-400"
           } max-w-md md:max-w-none h-[350px] sm:h-[250px] w-full transition duration-500 bg-blue-400`}
         >
-          {match_level == "level_1" ? (
+          {match_level == "LEVEL_1" ? (
             <h3 className=" p-1 text-zinc-100 dark:text-zinc-900 text-3xl overflow-scroll font-semibold opacity-30 transition duration-500 group-hover:opacity-60">
               &quot;{intro}&quot;
             </h3>

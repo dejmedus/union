@@ -40,16 +40,17 @@ const Footer = () => {
 
           <nav aria-label="Footer Nav" className="mt-12 lg:mt-0">
             <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:justify-end text-sm">
-              <Navlink name="design guide" path="https://docusaurus.io" />
-              <Navlink name="source code" path="https://github-repo" />
-              <Navlink name="other work" path="https://portfolio" />
+              <Navlink
+                name="source code"
+                path="https://github.com/dejmedus/union"
+              />
+              <Navlink
+                name="other work"
+                path="https://portfolio-dejmedus.vercel.app"
+              />
             </ul>
           </nav>
         </div>
-        {/* 
-        <p className="mt-12 text-center text-sm text-zinc-500 lg:text-right">
-          Copyright &copy; 2022. All rights reserved.
-        </p> */}
       </div>
     </footer>
   );
@@ -57,30 +58,30 @@ const Footer = () => {
 
 export default Footer;
 
-// interface SocialIconProps {
-//   name: string;
-//   svgPath: string;
-// }
+interface SocialIconProps {
+  name: string;
+  svgPath: string;
+}
 
-// function SocialIcon({ name, svgPath }: SocialIconProps) {
-//   return (
-//     <li>
-//       <a
-//         href="/"
-//         rel="noreferrer"
-//         target="_blank"
-//         className="text-zinc-700 transition hover:text-zinc-700/75"
-//       >
-//         <span className="sr-only">{name}</span>
-//         <svg
-//           className="h-6 w-6"
-//           fill="currentColor"
-//           viewBox="0 0 24 24"
-//           aria-hidden="true"
-//         >
-//           <path fillRule="evenodd" d={svgPath} clipRule="evenodd" />
-//         </svg>
-//       </a>
-//     </li>
-//   );
-// }
+function SocialIcon({ name, svgPath }: SocialIconProps) {
+  return (
+    <li>
+      <a
+        href="/"
+        rel="noreferrer"
+        target="_blank"
+        className="text-zinc-700 transition hover:text-zinc-700/75"
+      >
+        <span className="sr-only">{name}</span>
+        <svg
+          className="h-6 w-6"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path fillRule="evenodd" d={svgPath} clipRule="evenodd" />
+        </svg>
+      </a>
+    </li>
+  );
+}
