@@ -19,9 +19,9 @@ export function MultiCheckbox({
         <input
           type="checkbox"
           id={name}
-          data-groupName={groupName}
+          data-groupname={groupName}
           name={name}
-          className="w-5 h-5 border-zinc-300 rounded"
+          className="w-5 h-5 border-zinc-300 rounded  enabled:checked:bg-blue-400 checked:bg-blue-400 hover:checked:bg-blue-400"
           onChange={onChange}
           checked={value}
         />
@@ -48,7 +48,7 @@ export function MultiRadio({
           id={name}
           name={groupName}
           checked={value}
-          className="w-5 h-5 border-zinc-300 rounded"
+          className="w-5 h-5 border-zinc-300 rounded enabled:checked:bg-blue-400 checked:bg-blue-400 hover:checked:bg-blue-400"
         ></input>
         <span className="text-sm font-medium text-zinc-700">{label}</span>
       </label>
@@ -67,9 +67,9 @@ export function Multi({ children, half, groupLabel }: MultiProps) {
     <ul
       className={`${
         half ? "col-span-6 sm:col-span-3" : "col-span-6"
-      } p-4 space-y-1 border-t border-zinc-200 `}
+      } p-4 space-y-1`}
     >
-      <h3 className="text-sm font-medium">{groupName}</h3>
+      <p className="text-sm font-medium border-b  mb-2">{groupLabel}</p>
       <>{children}</>
     </ul>
   );
