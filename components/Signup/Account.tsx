@@ -1,4 +1,4 @@
-import { Input, Checkbox } from "@/common/Inputs";
+import { Input, Checkbox, Number } from "@/common/Inputs";
 import { Multi, MultiCheckbox, MultiRadio } from "@/components/Common/Multis";
 import { useState } from "react";
 
@@ -66,6 +66,7 @@ const Component = ({
           onChange={onChange}
           value={formData ? formData.name : false}
         />
+
         <Input
           type="text"
           validationText="Username must be atleast 4 characters long"
@@ -77,47 +78,46 @@ const Component = ({
           onChange={onChange}
           value={formData ? formData.username : false}
         />
-        <Multi half={true} groupLabel="Your pronouns">
+        <Multi half={true} groupLabel="Your Pronouns">
           <MultiCheckbox
-            value={formData.gender["s"]}
+            value={formData.gender["S"]}
             groupName="gender"
             onChange={onChange}
-            name="s"
+            name="S"
             label="she/her"
           />
           <MultiCheckbox
-            value={formData.gender["h"]}
+            value={formData.gender["H"]}
             groupName="gender"
             onChange={onChange}
-            name="h"
+            name="H"
             label="he/him"
           />
           <MultiCheckbox
-            value={formData.gender["t"]}
+            value={formData.gender["T"]}
             groupName="gender"
             onChange={onChange}
-            name="t"
+            name="T"
             label="they/them"
           />
           <MultiCheckbox
-            value={formData.gender["o"]}
+            value={formData.gender["O"]}
             groupName="gender"
             onChange={onChange}
-            name="o"
+            name="O"
             label="other"
           />
         </Multi>
-
-        <Input
-          type="number"
-          validationText="You must be over the age of 18 to use Union"
-          min={18}
-          placeholder="25"
-          onChange={onChange}
+        <Number
+          validationText="You must be atleast 18 to use Union"
           label="Age"
-          value={formData.age}
-          half={true}
           name="age"
+          placeholder="Enter Age"
+          min={18}
+          max={200}
+          half={true}
+          onChange={onChange}
+          value={formData ? formData.number : false}
         />
 
         <Checkbox

@@ -1,4 +1,5 @@
-import { Input, Checkbox } from "@/common/Inputs";
+import { Input, Checkbox, TextArea } from "@/common/Inputs";
+import { Multi, MultiCheckbox } from "@/common/Multis";
 
 interface ComponentProps {
   formData: {
@@ -9,7 +10,9 @@ interface ComponentProps {
     celeb: string;
     number: string;
   };
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLInputElement>
+  ) => void;
 }
 
 const Component = ({ formData, onChange }: ComponentProps) => {
@@ -17,14 +20,24 @@ const Component = ({ formData, onChange }: ComponentProps) => {
     <div className="mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6">
       <Input
         type="text"
-        validationText="Name field cannot be blank"
-        label="Celebrity Crush"
-        name="celeb"
-        placeholder="Enter Name"
-        min={1}
+        validationText="Please fill out your intro"
+        label="Intro"
+        name="intro"
+        placeholder="Introduce Yourself"
+        min={2}
         half={false}
         onChange={onChange}
-        value={formData ? formData.celeb : false}
+        value={formData ? formData.intro : false}
+      />
+      <TextArea
+        validationText="Bio must be at least 14 characters long"
+        label="Bio"
+        name="bio"
+        placeholder="What should we know about you?"
+        min={14}
+        half={false}
+        onChange={onChange}
+        value={formData ? formData.bio : false}
       />
     </div>
   );

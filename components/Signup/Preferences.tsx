@@ -15,45 +15,33 @@ interface PreferencesProps {
 const Preferences = ({ formData, onChange }: PreferencesProps) => {
   return (
     <div className="mt-8 grid grid-cols-6 gap-2 md:gap-4 lg:gap-6">
-      <Input
-        type="text"
-        validationText="Name field cannot be blank"
-        label="Number"
-        name="number"
-        placeholder="Enter Number"
-        min={1}
-        half={false}
-        onChange={onChange}
-        value={formData ? formData.number : false}
-      />
-
-      <Multi half={true} groupLabel="Partners pronouns">
+      <Multi half={true} groupLabel="Your Partners Pronouns">
         <MultiCheckbox
-          value={formData.genderPref["s"]}
-          groupName="genderPref"
+          value={formData.gender["S"]}
+          groupName="gender"
           onChange={onChange}
-          name="s"
+          name="S"
           label="she/her"
         />
         <MultiCheckbox
-          value={formData.genderPref["h"]}
-          groupName="genderPref"
+          value={formData.gender["H"]}
+          groupName="gender"
           onChange={onChange}
-          name="h"
+          name="H"
           label="he/him"
         />
         <MultiCheckbox
-          value={formData.genderPref["t"]}
-          groupName="genderPref"
+          value={formData.gender["T"]}
+          groupName="gender"
           onChange={onChange}
-          name="t"
+          name="T"
           label="they/them"
         />
         <MultiCheckbox
-          value={formData.genderPref["o"]}
-          groupName="genderPref"
+          value={formData.gender["O"]}
+          groupName="gender"
           onChange={onChange}
-          name="o"
+          name="O"
           label="other"
         />
       </Multi>

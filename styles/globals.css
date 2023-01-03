@@ -21,7 +21,7 @@
 h1,
 h2,
 h3,
-button {
+button textarea::placeholder {
   font-family: var(--unbounded-font);
   color: var(--lg-font);
 }
