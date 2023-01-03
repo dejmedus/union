@@ -39,36 +39,35 @@ model Session {
 }
 
 model User {
-  id                  String           @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt           DateTime         @default(now())
-  role                Role             @default(USER)
-  updatedAt           DateTime         @updatedAt
+  id                  String            @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt           DateTime          @default(now())
+  role                Role              @default(USER)
+  updatedAt           DateTime          @updatedAt
   name                String?
-  email               String?          @unique
+  email               String?           @unique
   emailVerified       DateTime?
   image               String?
-  mailingList         Boolean
+  mailingList         Boolean           @default(false)
   notifications       Notification[]
-  username            String
+  username            String?
   gender              Genders[]
-  age                 Int
-  orientation         Genders
-  relationshipType    RelationshipType
-  relationshipDynamic Dynamic
-  hasChildren         Boolean
-  wantsChildren       Boolean
-  beenMarried         Boolean
-  wantsMarriage       Boolean
-  smokes              Boolean
-  drinks              Boolean
-  legalDrugs          Boolean
-  pets                Boolean
+  age                 Int?
+  orientation         Genders?
+  relationshipType    RelationshipType?
+  relationshipDynamic Dynamic?
+  hasChildren         Boolean           @default(false)
+  wantsChildren       Boolean           @default(false)
+  beenMarried         Boolean           @default(false)
+  wantsMarriage       Boolean           @default(false)
+  smokes              Boolean           @default(false)
+  drinks              Boolean           @default(false)
+  pets                Boolean           @default(false)
   values              String[]
   genderPref          String[]
   agePref             Int[]
-  partnerKidsPref     Boolean
-  intro               String
-  bio                 String
+  partnerKidsPref     Boolean           @default(false)
+  intro               String?
+  bio                 String?
   matches             Match[]
   accounts            Account[]
   sessions            Session[]
@@ -86,22 +85,24 @@ model VerificationToken {
 //
 
 model Notification {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  read          Boolean
-  message       String
-  userDetailsId String      @db.ObjectId
-  userDetails   UserDetails @relation(fields: [userDetailsId], references: [id], onDelete: Cascade)
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  read      Boolean  @default(false)
+  message   String
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
 }
 
 model Match {
-  id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  dateMatched   DateTime    @default(now())
-  matchLevel    Int
-  badges        String[]
-  userDetailsId String      @db.ObjectId
-  userDetails   UserDetails @relation(fields: [userDetailsId], references: [id])
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  dateMatched DateTime   @default(now())
+  matchLevel  MatchLevel @default(LEVEL_1)
+  badges      String[]
+
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
 }
 
 enum RelationshipType {
@@ -109,6 +110,11 @@ enum RelationshipType {
   SHORT
   LONG
   LIFE
+}
+
+enum MatchLevel {
+  LEVEL_1
+  LEVEL_2
 }
 
 enum Dynamic {
