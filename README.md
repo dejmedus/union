@@ -29,6 +29,10 @@
 <img alt="landing page" src="https://user-images.githubusercontent.com/59973863/210288121-de53251b-b17d-4c20-937d-9b275a2a7a42.png">
 </details>
 
+<details><summary>Terms Modal</summary>
+<img alt="landing page" src="https://user-images.githubusercontent.com/59973863/210288614-59e074f2-a34c-4c5f-8cb4-49df85f422f0.png">
+</details>
+
 <details><summary>Signup - Profile</summary>
 <img alt="landing page" src="https://user-images.githubusercontent.com/59973863/210288138-acd02f40-699c-4a24-ba10-1459b2532cd2.png">
 </details>
