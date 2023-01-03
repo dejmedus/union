@@ -5,6 +5,7 @@
 - Next.js v12 & TypeScript
 - TailwindCSS
 - [HyperUI](https://www.hyperui.dev)
+- NextAuth.js
 - Prisma
 - MongoDB
 
